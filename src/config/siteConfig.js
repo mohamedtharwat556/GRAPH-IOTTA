@@ -10,7 +10,7 @@ export const BRAND = {
   // Instagram and TikTok are not created yet. When real URLs exist, set them
   // here and they will appear automatically. Leave null until then.
   instagram: null,
-  tiktok: null,
+  tiktok: 'https://www.tiktok.com/@graphiotta',
   // Production domain is owned by the brand owner. Set it once confirmed to
   // enable the canonical URL and absolute og:url.
   domain: null,
