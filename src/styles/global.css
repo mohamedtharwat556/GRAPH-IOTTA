@@ -418,6 +418,31 @@ p {
   opacity: 0;
   transition: opacity 1.4s var(--ease);
 }
+
+/* ---------------- Mobile Video Background ---------------- */
+@media (max-width: 768px) {
+  .site-bg video {
+    object-fit: cover;
+    object-position: center center;
+  }
+
+  .site-bg-veil {
+    background:
+      linear-gradient(180deg, rgba(5, 7, 12, calc(var(--site-veil) * 0.9)), rgba(5, 7, 12, calc(var(--site-veil) + 0.05)) 50%, rgba(8, 13, 25, calc(var(--site-veil) + 0.2)));
+  }
+}
+
+@media (max-width: 480px) {
+  .site-bg video {
+    object-fit: cover;
+    object-position: center 30%;
+  }
+
+  .site-bg-veil {
+    background:
+      linear-gradient(180deg, rgba(5, 7, 12, calc(var(--site-veil) * 0.95)), rgba(5, 7, 12, calc(var(--site-veil) + 0.1)) 45%, rgba(8, 13, 25, calc(var(--site-veil) + 0.25)));
+  }
+}
 .site-bg video.is-active {
   opacity: 1;
 }
@@ -544,6 +569,84 @@ body.is-splashing {
   border-radius: 50%;
   opacity: 0;
   animation: particle-float 3s ease-in-out infinite;
+}
+
+/* ---------------- Mobile Splash Enhancements ---------------- */
+@media (max-width: 768px) {
+  .splash {
+    background: radial-gradient(ellipse at center, #0d1f3c 0%, #000000 100%);
+  }
+
+  .splash-inner {
+    gap: 20px;
+    padding: 0 20px;
+  }
+
+  .splash-logo {
+    width: min(140px, 35vw);
+    animation: splash-in 1s var(--ease) both, logo-pulse 2.5s ease-in-out infinite 1s;
+  }
+
+  .splash-logo-wrapper::before {
+    width: 130%;
+    height: 130%;
+    animation: glow-ring 2.5s ease-in-out infinite;
+  }
+
+  .splash-tagline {
+    font-size: clamp(14px, 4vw, 18px);
+    animation: splash-in 1s var(--ease) 0.35s both;
+  }
+
+  .splash-tagline::after {
+    width: 40px;
+    margin: 10px auto 0;
+  }
+
+  .splash-progress {
+    width: min(160px, 65vw);
+    height: 2.5px;
+  }
+
+  .splash-particle {
+    width: 3px;
+    height: 3px;
+  }
+}
+
+@media (max-width: 480px) {
+  .splash-inner {
+    gap: 16px;
+    padding: 0 16px;
+  }
+
+  .splash-logo {
+    width: min(120px, 30vw);
+  }
+
+  .splash-logo-wrapper::before {
+    width: 120%;
+    height: 120%;
+  }
+
+  .splash-tagline {
+    font-size: clamp(13px, 5vw, 16px);
+  }
+
+  .splash-tagline::after {
+    width: 32px;
+    margin: 8px auto 0;
+  }
+
+  .splash-progress {
+    width: min(140px, 70vw);
+    height: 2px;
+  }
+
+  .splash-particle {
+    width: 2px;
+    height: 2px;
+  }
 }
 
 @keyframes particle-float {

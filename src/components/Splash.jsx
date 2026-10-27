@@ -10,6 +10,7 @@ export default function Splash() {
   const { t } = useLanguage()
   const [phase, setPhase] = useState(SPLASH.enabled ? 'show' : 'done')
   const [showTyping, setShowTyping] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
     if (!SPLASH.enabled) return
@@ -20,23 +21,31 @@ export default function Splash() {
       document.body.classList.remove('is-splashing')
     }, SPLASH.logoDurationMs + SPLASH.fadeOutMs)
     const t3 = setTimeout(() => setShowTyping(true), 400)
+
+    // Detect mobile for performance optimization
+    const checkMobile = () => setIsMobile(window.innerWidth < 768)
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+
     return () => {
       clearTimeout(t1)
       clearTimeout(t2)
       clearTimeout(t3)
       document.body.classList.remove('is-splashing')
+      window.removeEventListener('resize', checkMobile)
     }
   }, [])
 
   if (phase === 'done') return null
 
-  // Generate random particles
-  const particles = Array.from({ length: 20 }, (_, i) => ({
+  // Generate random particles - fewer on mobile for better performance
+  const particleCount = isMobile ? 12 : 20
+  const particles = Array.from({ length: particleCount }, (_, i) => ({
     id: i,
     left: Math.random() * 100,
     delay: Math.random() * 3,
     duration: 2 + Math.random() * 2,
-    size: 2 + Math.random() * 4,
+    size: isMobile ? 2 + Math.random() * 2 : 2 + Math.random() * 4,
   }))
 
   return (
